@@ -1,0 +1,28 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "quan-UI-UX-app"
+client_id = "ff1b4d08984844280d2996d4823f3590"
+application_url = "https://thesis-adjusted-scales-differ.trycloudflare.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://thesis-adjusted-scales-differ.trycloudflare.com/auth/callback",
+  "https://thesis-adjusted-scales-differ.trycloudflare.com/auth/shopify/callback",
+  "https://thesis-adjusted-scales-differ.trycloudflare.com/api/auth/callback",
+  "https://thesis-adjusted-scales-differ.trycloudflare.com/.shopify/graphiql/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "example.myshopify.com"

@@ -1,4 +1,4 @@
-import { json } from "@remix-run/node";
+import { ActionFunctionArgs, json } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 
 interface LoaderData {
@@ -8,32 +8,14 @@ interface LoaderData {
 }
 
 export const loader = () => {
-  return json<LoaderData>({
-    message: "lolololo",
-    first_name: "",
-    last_name: "",
-  });
+  return json({ message: "Hello world!" });
 };
 
-export const action = async ({
-  request,
-}: {
-  request: Request;
-  response: Response;
-}) => {
-  const formData = await request.formData();
-  const body: { [key: string]: string | File } = {};
-  for (const [name, value] of formData.entries()) {
-    if (value instanceof File) {
-      body[name] = value;
-    } else {
-      body[name] = value as string;
-    }
-  }
-  console.log(body.first_name);
-  console.log(body.last_name);
-  return body;
-};
+export const action = async({ request }: ActionFunctionArgs) => {
+  const body = await request.formData();
+  console.log('body',body);
+  return Object.fromEntries(body.entries());
+}
 
 export default function Data() {
   const actionData = useLoaderData<LoaderData>();
